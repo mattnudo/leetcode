@@ -13,17 +13,16 @@ def minEatingSpeed(piles: list[int], h: int) -> int:
     returns 
     """
     def condition(speed):
-        return sum((pile - 1) // speed + 1 for pile in piles) <= h
-                
-
-    left, right = 1, max(piles)
-    while(left < right):
-        mid = left + (right - left) // 2
-        if(condition(mid)):
-            right = mid
-        else:
-            left = mid + 1
-    return left
+        def isFastEnough(speed):
+            return sum((pile + speed - 1) // speed  for pile in piles) <= h  
+        left, right = 1 , max(piles)
+        while (left < right):
+            mid = (left + right) // 2
+            if(isFastEnough(mid)):
+                right = mid
+            else:
+                left = mid + 1
+        return left
 
  
 # Example 1:
