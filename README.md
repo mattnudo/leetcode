@@ -210,47 +210,52 @@ def max_sum_subarray(nums, k):
 
 #### **Fixed size template** {#fixed-size-template}
 
-def sliding\_window\_fixed(input, window\_size):  
-2    ans \= window \= input\[0:window\_size\]  
-3    for right in range(window\_size, len(input)):  
-4        left \= right \- window\_size  
-5        remove input\[left\] from window  
-6        append input\[right\] to window  
-7        ans \= optimal(ans, window)  
-8    return ans
+```
+def sliding_window_fixed(input, window_size):  
+    ans = window = input[0:window_size]  
+    for right in range(window_size, len(input)):  
+        left = right - window_size  
+        remove input[left] from window  
+        append input[right] to window  
+        ans = optimal(ans, window)  
+    return ans
+```
 
 #### Sliding longest template {#sliding-longest-template}
 
-def sliding\_window\_flexible\_longest(input):  
-2    initialize window, ans  
-3    left \= 0  
-4    for right in range(len(input)):  
-5        append input\[right\] to window  
-6        while invalid(window):        \# update left until window is valid again  
-7            remove input\[left\] from window  
-8            left \+= 1  
-9        ans \= max(ans, window)        \# window is guaranteed to be valid here  
-10    return ans
+```
+def sliding_window_flexible_longest(input):  
+    initialize window, ans  
+    left = 0  
+    for right in range(len(input)):  
+        append input[right] to window  
+        while invalid(window):        # update left until window is valid again  
+            remove input[left] from window  
+            left += 1  
+        ans = max(ans, window)        # window is guaranteed to be valid here  
+    return ans
+```
 
 #### Shortest template {#shortest-template}
 
-def sliding\_window\_flexible\_shortest(input):  
-2    initialize window, ans  
-3    left \= 0  
-4    for right in range(len(input)):  
-5        append input\[right\] to window  
-6        while valid(window):  
-7            ans \= min(ans, window)      \# window is guaranteed to be valid here  
-8            remove input\[left\] from window  
-9            left \+= 1  
-10    return ans
+```
+def sliding_window\_flexible_shortest(input):  
+    initialize window, ans  
+    left = 0  
+    for right in range(len(input)):  
+        append input[right] to window  
+        while valid(window):  
+            ans = min(ans, window)      # window is guaranteed to be valid here  
+            remove input[left] from window  
+            left += 1  
+    return ans
+```
 
 #### **LeetCode Links:** {#leetcode-links:}
 
 * Easy: Maximum Average Subarray I (\#643)  
 * Medium: Longest Substring Without Repeating Characters (\#3)  
 * Hard: Sliding Window Maximum (\#239)  
-  ---
 
 ### Two Pointers {#two-pointers}
 
@@ -279,27 +284,20 @@ Find two numbers in a sorted array that add up to a target value.
 * If the sum is less than the target, move the left pointer to the right.  
 * If the sum is greater than the target, move the right pointer to the left.
 
-`def two_sum_sorted(nums, target):`
+```
+def two_sum_sorted(nums, target):
 
-    `left, right = 0, len(nums) - 1`
-
-    `while left < right:`
-
-        `current_sum = nums[left] + nums[right]`
-
-        `if current_sum == target:`
-
-            `return [left, right]`
-
-        `elif current_sum < target:`
-
-            `left += 1`
-
-        `else:`
-
-            `right -= 1`
-
-    `return []`
+    left, right = 0, len(nums) - 1
+    while left < right:
+        current_sum = nums[left] + nums[right]
+        if current_sum == target:
+            return [left, right]
+        elif current_sum < target:
+            left += 1
+        else:
+            right -= 1
+    return []
+```
 
 #### **LeetCode Links:** {#leetcode-links:-1}
 
@@ -309,7 +307,7 @@ Find two numbers in a sorted array that add up to a target value.
 * [Two Sum II \- Input Array is Sorted (LeetCode \#167)](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)  
 * [3Sum (LeetCode \#15)](https://leetcode.com/problems/3sum/description/)  
 * [Container With Most Water (LeetCode \#11)](https://leetcode.com/problems/container-with-most-water/description/)  
-  ---
+
 
 ### Fast & Slow Pointers (Floyd’s Cycle Detection) {#fast-&-slow-pointers-(floyd’s-cycle-detection)}
 
