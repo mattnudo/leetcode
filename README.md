@@ -371,7 +371,6 @@ def merge_intervals(intervals):
 * Easy: Insert Interval (\#57)  
 * Medium: Merge Intervals (\#56)  
 * Hard: Minimum Number of Arrows to Burst Balloons (\#452)  
-  ---
 
 ### Binary Search {#binary-search}
 
@@ -386,54 +385,38 @@ Expansion of two pointer approach, with left and right pointers halving workspac
 
 #### Template  {#template}
 
-def binary\_search(arr: List\[int\], target: int) \-\> int:
-
-2    left, right \= 0, len(arr) \- 1
-
-3    first\_true\_index \= \-1
-
-4    while left \<= right:
-
-5        mid \= (left \+ right) // 2
-
-6        if feasible(mid):
-
-7            first\_true\_index \= mid
-
-8            right \= mid \- 1
-
-9        else:
-
-10            left \= mid \+ 1
-
-12    return first\_true\_index
+```
+def binary_search(arr: List[int], target: int) -> int:
+    left, right = 0, len(arr) - 1
+    first\_true_index = -1
+    while left <= right:
+        mid = (left + right) // 2
+        if feasible(mid):
+            first_true_index = mid
+            right = mid - 1
+        else:
+            left = mid + 1
+    return first_true_index
+```
 
 #### **Example Problem:** {#example-problem:-4}
 
 **Problem:** Find an element in a sorted array.  
 **Solution:** Use binary search.
 
-`def binary_search(nums, target):`
-
-    `left, right = 0, len(nums) - 1`
-
-    `while left <= right:`
-
-        `mid = left + (right - left) // 2`
-
-        `if nums[mid] == target:`
-
-            `return mid`
-
-        `elif nums[mid] < target:`
-
-            `left = mid + 1`
-
-        `else:`
-
-            `right = mid - 1`
-
-    `return -1`
+```
+def binary_search(nums, target):
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = left + (right - left) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+```
 
 #### **LeetCode Links:** {#leetcode-links:-4}
 
