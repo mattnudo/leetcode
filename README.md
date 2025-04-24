@@ -388,7 +388,7 @@ Expansion of two pointer approach, with left and right pointers halving workspac
 ```
 def binary_search(arr: List[int], target: int) -> int:
     left, right = 0, len(arr) - 1
-    first\_true_index = -1
+    first_true_index = -1
     while left <= right:
         mid = (left + right) // 2
         if feasible(mid):
