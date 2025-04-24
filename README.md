@@ -196,15 +196,10 @@ Runtime to Algorithm Cheat Sheet
 
 ```
 def max_sum_subarray(nums, k):
-
     max_sum, window_sum = 0, sum(nums[:k])
-
     for i in range(k, len(nums)):
-
         window_sum += nums[i] - nums[i - k]
-
         max_sum = max(max_sum, window_sum)
-
     return max_sum
 ```
 
