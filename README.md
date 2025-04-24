@@ -194,17 +194,19 @@ Runtime to Algorithm Cheat Sheet
 **Problem:** Find the maximum sum of a subarray of size `k`.  
 **Solution:** Use a sliding window to maintain the sum dynamically.
 
-`def max_sum_subarray(nums, k):`
+```
+def max_sum_subarray(nums, k):
 
-    `max_sum, window_sum = 0, sum(nums[:k])`
+    max_sum, window_sum = 0, sum(nums[:k])
 
-    `for i in range(k, len(nums)):`
+    for i in range(k, len(nums)):
 
-        `window_sum += nums[i] - nums[i - k]`
+        window_sum += nums[i] - nums[i - k]
 
-        `max_sum = max(max_sum, window_sum)`
+        max_sum = max(max_sum, window_sum)
 
-    `return max_sum`
+    return max_sum
+```
 
 #### **Fixed size template** {#fixed-size-template}
 
