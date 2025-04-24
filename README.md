@@ -513,13 +513,12 @@ def subsets(nums):
     * Start with base cases and iteratively compute the solutions to progressively larger sub problems until you reach the final solution  
     * Avoids overhead of recursion and memoization often resulting in more efficient time and space usage  
     * Often used when you know the dependencies between sub problems and can structure the solution iteratively  
-    * 
 
-  #### **When to Use:** {#when-to-use:-6}
+**When to Use:** {#when-to-use:-6}
 
 Use for problems that involve overlapping subproblems and optimal substructure (e.g., Fibonacci, knapsack, or longest subsequence problems).
 
-#### **Example Problem:** {#example-problem:-6}
+**Example Problem:** {#example-problem:-6}
 
 **Problem:** Find the nth Fibonacci number.  
 **Solution:** Use DP with memoization.
@@ -532,7 +531,7 @@ def fibonacci(n, memo={}):
         memo[n] = fibonacci(n-1, memo) + fibonacci(n-2, memo)
     return memo[n]
 ```
-[62\. Unique Paths](https://leetcode.com/problems/unique-paths/)
+[62. Unique Paths](https://leetcode.com/problems/unique-paths/)
 
 **Top down solution - recursive with memoization. Lots of memory!**
 
@@ -602,6 +601,7 @@ class Solution:
 
 #### On Tree Template {#on-tree-template}
 
+```
 from collections import deque
 
 def bfs\_by\_queue(root):  
@@ -613,6 +613,7 @@ def bfs\_by\_queue(root):
                 return FOUND(child)  
             queue.append(child)  
     return NOT\_FOUND
+    ```
 
 #### On Graph Template {#on-graph-template}
 
