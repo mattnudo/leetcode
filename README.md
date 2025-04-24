@@ -15,24 +15,27 @@ Most problems have been solved in Python, as it is the language I have become mo
 [https://www.youtube.com/watch?v=HTLu2DFOdTg](https://www.youtube.com/watch?v=HTLu2DFOdTg)
 
 **Common imports**  
+```
 from collections import deque		\#double ended queue, popleft, appendleft, pop, append  
 From collections import Counter	\#map elements to their counts  
 import json				\#load json contents  
 numbers \= json.loads(contents) 
-
+```
 *from pathlib import Path*  
+```
 path \= Path('siddhartha.txt')  
 contents \= path.read\_text()  
 lines \= contents.splitlines()
 
 msg \= "I love programming.")  
 path.write\_text(msg)
+```
 
 **Pytest**  
 [https://docs.pytest.org/en/stable/](https://docs.pytest.org/en/stable/) 
 
 **Python Class**
-
+```
 Import math  
 class Circle(object):  
 “Advanced circle analytics”
@@ -76,8 +79,10 @@ class Tire(Circle):
 c \= Circle(10)  
 Print “The circle has an area of “, c.area()  
 Circle.from\_bbd(25.1)
+```
 
 **Exceptions**  
+```
 from pathlib import Path  
 import json  
 path \= Path("numbers.json")  
@@ -89,44 +94,63 @@ print(msg)
 else:   
 numbers \= json.loads(contents)   
 print(numbers)
+```
 
 **Get maximum value in a dictionary**  
 [https://www.geeksforgeeks.org/python-get-key-with-maximum-value-in-dictionary/](https://www.geeksforgeeks.org/python-get-key-with-maximum-value-in-dictionary/)
 
+```
 d \= {'Audi':100, 'BMW':1292, 'Jaguar': 210000, 'Hyundai' : 88}  
 res \= max(d, key=d.get)  
 print(res)
+```
 
 **Get counts of chars in a string**  
+```
 “banana”.count(“a”)
+```
 
 **Remove non alphanumeric characters from a string**  
+```
 ''.join(ch for ch in some\_string if ch.isalnum())
+```
 
 [.sorted()](https://www.w3schools.com/python/ref_func_sorted.asp)  
+```
 a \= ("b", "g", "a", "d", "f", "c", "h", "e")  
 x \= sorted(a)  
 print(x)  
 \['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'\]
+```
 
 **Convert binary string to binary and add**  
+```
 b\_int \= int(b,2)  
 return str(bin(a\_int \+ b\_int))\[2:\]
+```
 
 **Use a var in a sub function**  
+```
 nonlocal max\_diameter
+```
 
 **Sort multi dim array by first element**  
+```
 intervals.sort(key \= lambda x: x\[0\])
+```
 
 **Divmod \- gives you quotient and remainder of division**  
+```
 \# returns the quotient and remainder of 8/3  
 result \= divmod(8, 3)  
 print('Quotient and Remainder \= ',result)  
 \# Output: Quotient and Remainder \=  (2, 2\)
+```
 
 **Get top k from heapq**  
+```
 heapq.**nsmallest/largest**
+```
 
 [Python Cheat Sheet](https://leetcode.com/discuss/study-guide/2122306/python-cheat-sheet-for-leetcode)
 
