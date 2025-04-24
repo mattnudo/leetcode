@@ -457,80 +457,43 @@ Explanation:
 
 * Useful for combinatorial problems like permutations, subsets, and Sudoku solving.
 
-def dfs(start\_index, \[...additional states\]):  
-    if is\_leaf(start\_index):  
+```
+def dfs(start_index, [...additional states]):  
+    if is_leaf(start_index):  
         return 1  
-    ans \= initial\_value  
-    for edge in get\_edges(start\_index, \[...additional states\]):  
+    ans = initial_value  
+    for edge in get_edges(start_index, [...additional states]):  
         if additional states:   
-            update(\[...additional states\])  
-        ans \= aggregate(ans, dfs(start\_index \+ len(edge), \[...additional states\]))  
+            update([...additional states])  
+        ans = aggregate(ans, dfs(start_index + len(edge), [...additional states]))  
         if additional states:   
-            revert(\[...additional states\])  
+            revert(...additional states])  
     return ans
-
-Basic  
-ans \= \[\]  
-2def dfs(start\_index, path, \[...additional states\]):  
-3    if is\_leaf(start\_index):  
-4        ans.append(path\[:\]) \# add a copy of the path to the result  
-5        return  
-6    for edge in get\_edges(start\_index, \[...additional states\]):  
-7        \# prune if needed  
-8        if not is\_valid(edge):  
-9            continue  
-10        path.add(edge)  
-11        if additional states:  
-12            update(...additional states)  
-13        dfs(start\_index \+ len(edge), path, \[...additional states\])  
-14        \# revert(...additional states) if necessary e.g. permutations  
-15        path.pop()
-
-#### Aggregation {#aggregation}
-
-def dfs(start\_index, \[...additional states\]):  
-2    if is\_leaf(start\_index):  
-3        return 1  
-4    ans \= initial\_value  
-5    for edge in get\_edges(start\_index, \[...additional states\]):  
-6        if additional states:   
-7            update(\[...additional states\])  
-8        ans \= aggregate(ans, dfs(start\_index \+ len(edge), \[...additional states\]))  
-9        if additional states:   
-10            revert(\[...additional states\])  
-11    return ans
+```
 
 #### **Example Problem:** {#example-problem:-5}
 
 **Problem:** Generate all subsets of a set.  
 **Solution:** Use backtracking to explore all possibilities.
 
-`def subsets(nums):`
-
-    `result = []`
-
-    `def backtrack(start, path):`
-
-        `result.append(path[:])`
-
-        `for i in range(start, len(nums)):`
-
-            `path.append(nums[i])`
-
-            `backtrack(i + 1, path)`
-
-            `path.pop()`
-
-    `backtrack(0, [])`
-
-    `return result`
+```
+def subsets(nums):
+    result = []
+    def backtrack(start, path):
+        result.append(path[:])
+        for i in range(start, len(nums)):
+            path.append(nums[i])
+            backtrack(i + 1, path)
+            path.pop()
+    backtrack(0, [])
+    return result
+```
 
 #### **LeetCode Links:** {#leetcode-links:-5}
 
 * Easy: Letter Case Permutation (\#784)  
 * Medium: Subsets (\#78)  
 * Hard: Word Search II (\#212)  
-  ---
 
 ### Dynamic Programming (DP) {#dynamic-programming-(dp)}
 
@@ -561,65 +524,65 @@ Use for problems that involve overlapping subproblems and optimal substructure (
 **Problem:** Find the nth Fibonacci number.  
 **Solution:** Use DP with memoization.
 
-`def fibonacci(n, memo={}):`
-
-    `if n <= 1:`
-
-        `return n`
-
-    `if n not in memo:`
-
-        `memo[n] = fibonacci(n-1, memo) + fibonacci(n-2, memo)`
-
-    `return memo[n]`
-
+```
+def fibonacci(n, memo={}):
+    if n <= 1:
+        return n
+    if n not in memo:
+        memo[n] = fibonacci(n-1, memo) + fibonacci(n-2, memo)
+    return memo[n]
+```
 [62\. Unique Paths](https://leetcode.com/problems/unique-paths/)
 
-**Top down solution \- recursive with memoization. Lots of memory\!**
+**Top down solution - recursive with memoization. Lots of memory!**
 
+```
 class Solution:  
-    def uniquePaths(self, m: int, n: int) \-\> int:  
+    def uniquePaths(self, m: int, n: int) -> int:  
         """  
-            return the \# od possible unique paths from m to n  
+            return the # of possible unique paths from m to n  
         """  
-        result \= \[\]  
+        result = []  
         def backtrack(x, y, path):  
-            \#save the path to the result  
-            result.append(path\[:\])  
-            \#for x and y, traverse all paths to bottom right corner grid\[x-1\]\[y-1\]  
+            #save the path to the result  
+            result.append(path[:])  
+            #for x and y, traverse all paths to bottom right corner grid[x-1][y-1]  
             for row in range(x,m-1):  
                 for column in range(y,n-1):  
-                    path.append(\[row, column\])  
+                    path.append([row, column])  
                     backtrack(row+1, column+1, path)  
                     path.pop()  
-        backtrack(0,0, \[\])  
+        backtrack(0,0, [])  
         return len(result)
+```
 
 **Bottom up \- iterative, low memory** 
 
 [https://algo.monster/liteproblems/62](https://algo.monster/liteproblems/62) 
 
+```
 class Solution:  
-    def uniquePaths(self, m: int, n: int) \-\> int:  
-        \# Initialize a list that will hold the number of unique paths to each cell  
-        \# in the first row. Initially, there's only one unique path to reach any cell  
-        \# in the first row since the only possible move is to the right.  
-        path\_counts \= \[1\] \* n  
+    def uniquePaths(self, m: int, n: int) -> int:  
+        # Initialize a list that will hold the number of unique paths to each cell  
+        # in the first row. Initially, there's only one unique path to reach any cell  
+        # in the first row since the only possible move is to the right.  
+        path_counts = [1] * n  
         
-        \# Iterate over the rows of the grid starting from the second row,  
-        \# since the first row has been initialized already.  
+        # Iterate over the rows of the grid starting from the second row,  
+        # since the first row has been initialized already.  
         for row in range(1, m):  
-            \# Iterate over the columns starting from the second column,  
-            \# since the first column only has one unique path (move down).  
+            # Iterate over the columns starting from the second column,  
+            # since the first column only has one unique path (move down).  
             for col in range(1, n):  
-                \# The number of unique paths to reach this cell is the sum of  
-                \# the number of unique paths to reach the cell directly above  
-                \# and the number of unique paths to reach the cell to the left.  
-                path\_counts\[col\] \+= path\_counts\[col \- 1\]  
+                # The number of unique paths to reach this cell is the sum of  
+                # the number of unique paths to reach the cell directly above  
+                # and the number of unique paths to reach the cell to the left.  
+                path_counts[col] += path_counts[col - 1]  
         
-        \# Return the number of unique paths to reach the bottom-right corner of the grid,  
-        \# which is the last element in the path\_counts list.  
-        return path\_counts\[-1\]
+        # Return the number of unique paths to reach the bottom-right corner of the grid,  
+        # which is the last element in the path\_counts list.  
+        return path_counts[-1]
+```
 
 #### **LeetCode Links:** {#leetcode-links:-6}
 
@@ -628,7 +591,6 @@ class Solution:
 * Hard: Edit Distance (\#72)  
 * [house robber](https://algo.monster/problems/house_robber)   
 * [robot paths](https://algo.monster/problems/robot_unique_path)  
-  ---
 
 ### Breadth-First Search (BFS) {#breadth-first-search-(bfs)}
 
