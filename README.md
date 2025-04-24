@@ -314,37 +314,26 @@ Useful for cycle detection in linked lists or determining meeting points in sequ
 
 **Problem:** Detect a cycle in a linked list.  
 **Solution:** Use fast and slow pointers to detect a cycle.
-
-`class ListNode:`
-
-    `def __init__(self, val=0, next=None):`
-
-        `self.val = val`
-
-        `self.next = next`
-
-`def hasCycle(head):`
-
-    `slow, fast = head, head`
-
-    `while fast and fast.next:`
-
-        `slow = slow.next`
-
-        `fast = fast.next.next`
-
-        `if slow == fast:`
-
-            `return True`
-
-    `return False`
+```
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+def hasCycle(head):
+    slow, fast = head, head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+    return False
+```
 
 #### **LeetCode Links:** {#leetcode-links:-2}
 
 * Easy: Linked List Cycle (\#141)  
 * Medium: Find the Duplicate Number (\#287)  
 * Hard: Linked List Cycle II (\#142)  
-  ---
 
 ### Two Pointers vs Sliding Window {#two-pointers-vs-sliding-window}
 
@@ -358,30 +347,24 @@ In the solution, we keep track of the number of characters that appear in the wi
 
 #### **When to Use:** {#when-to-use:-3}
 
-When dealing with overlapping intervals, such as merging time slots or finding gaps in schedules.
+* When dealing with overlapping intervals, such as merging time slots or finding gaps in schedules.
 
 #### **Example Problem:** {#example-problem:-3}
 
 **Problem:** Merge overlapping intervals.  
 **Solution:** Sort by start time and merge overlapping intervals.
 
-`def merge_intervals(intervals):`
-
-    `intervals.sort(key=lambda x: x[0])`
-
-    `merged = []`
-
-    `for interval in intervals:`
-
-        `if merged and merged[-1][1] >= interval[0]:`
-
-            `merged[-1][1] = max(merged[-1][1], interval[1])`
-
-        `else:`
-
-            `merged.append(interval)`
-
-    `return merged`
+```
+def merge_intervals(intervals):
+    intervals.sort(key=lambda x: x[0])
+    merged = []
+    for interval in intervals:
+        if merged and merged[-1][1] >= interval[0]:
+            merged[-1][1] = max(merged[-1][1], interval[1])
+        else:
+            merged.append(interval)
+    return merged
+```
 
 #### **LeetCode Links:** {#leetcode-links:-3}
 
